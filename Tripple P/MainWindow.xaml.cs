@@ -34,5 +34,10 @@ namespace Tripple_P
         {
 
         }
+
+        private void FeaturesList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

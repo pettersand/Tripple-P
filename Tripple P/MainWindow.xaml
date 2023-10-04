@@ -4,20 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        FontFamily="{materialDesign:MaterialDesignFont}"
         xmlns:local="clr-namespace:Tripple_P"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="{DynamicResource MaterialDesignDarkBackground}">
     <Grid>
-        <TabControl>
+        <TabControl Background="{DynamicResource MaterialDesignDarkBackground}">
             <!-- Planning Tab -->
             <TabItem Header="Planning">
                 <TabControl TabStripPlacement="Bottom">
-                    <TabItem Header="Brainstorm">
+                    <TabItem Header="Brainstorm" Background="{DynamicResource MaterialDesignDarkBackground}">
                         <Grid Margin="5,5,5,5">
                             <!-- Grid Definitions -->
                             <Grid.RowDefinitions>
@@ -31,18 +26,24 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!-- Project Description -->
-                            <Label Content="Project Description" Grid.Row="0" Grid.Column="0"/>
-                            <TextBox Name="ProjectDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Label x:Name="ProjectDescriptionHeader" Content="Project Description" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" />
+
+
+                            <TextBox Name="ProjectDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" BorderBrush="#FF050303" BorderThickness="0,1,1,1"/>
 
                             <!-- Features -->
-                            <Label Content="Features" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-                            <DataGrid Name="FeaturesList" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Label x:Name="FeaturesHeader" Content="Features" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,0,1"/>
+                            <DataGrid Name="FeaturesList" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" SelectionChanged="FeaturesList_SelectionChanged_1"/>
                             <!-- Add items here -->
 
 
                             <!-- Goals -->
-                            <Label Content="Goals" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center"/>
-                            <TextBox Name="Goals" Grid.Row="2" Grid.Column="2" Grid.RowSpan="2"/>
+                            <Label x:Name="GoalsHeader" Content="Goals" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,1,1"/>
+                            <TextBox Name="Goals" Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" BorderThickness="1,0,1,1">
+                                <TextBox.BorderBrush>
+                                    <SolidColorBrush Color="Black" Opacity="1"/>
+                                </TextBox.BorderBrush>
+                            </TextBox>
                         </Grid>
                     </TabItem>
                 </TabControl>
