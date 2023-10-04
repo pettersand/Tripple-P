@@ -3,10 +3,61 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
         xmlns:local="clr-namespace:Tripple_P"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <!-- Planning Tab -->
+            <TabItem Header="Planning">
+                <TabControl TabStripPlacement="Bottom">
+                    <TabItem Header="Brainstorm">
+                        <Grid Margin="5,5,5,5">
+                            <!-- Grid Definitions -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1" MinHeight="75"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <!-- Project Description -->
+                            <Label Content="Project Description" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Name="ProjectDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                            <!-- Features -->
+                            <Label Content="Features" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                            <DataGrid Name="FeaturesList" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <!-- Add items here -->
+
+
+                            <!-- Goals -->
+                            <Label Content="Goals" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center"/>
+                            <TextBox Name="Goals" Grid.Row="2" Grid.Column="2" Grid.RowSpan="2"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <!-- Sub-Tabs will go here -->
+            </TabItem>
+
+            <!-- Progress Tab -->
+            <TabItem Header="Progress">
+                <!-- Sub-Tabs will go here -->
+            </TabItem>
+
+            <!-- Production Tab -->
+            <TabItem Header="Production">
+                <!-- Sub-Tabs will go here -->
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
