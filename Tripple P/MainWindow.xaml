@@ -6,7 +6,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Tripple_P"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="{DynamicResource MaterialDesignDarkBackground}">
+        Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#FF001823"/>
+        <SolidColorBrush x:Key="ContainerColor" Color="#FF12252D"/>
+        <SolidColorBrush x:Key="ContainerSecondaryColor" Color="#FF356F87"/>
+        <SolidColorBrush x:Key="ForegroundColor" Color="#DDFFFFFF"/>
+        <SolidColorBrush x:Key="ForegroundActiveColor" Color="#FFB46747"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#FFB4475E"/>
+        <SolidColorBrush x:Key="InputBoxColor" Color="#FF8CBCD0"/>
+        <SolidColorBrush x:Key="InputBoxForegroundColor" Color="Black"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#FFB49D47"/>
+    </Window.Resources>
     <Grid>
         <TabControl Background="{DynamicResource MaterialDesignDarkBackground}">
             <!-- Planning Tab -->
@@ -26,13 +37,27 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!-- Project Description -->
-                            <Label x:Name="ProjectDescriptionHeader" Content="Project Description" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" />
+                            <Border Margin="16" Padding="16" CornerRadius="8" Background="{DynamicResource ContainerColor}">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.4"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <!-- Your content elements here -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
+                                    <Label x:Name="ProjectDescriptionHeader" Content="Project Description" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" Background="{DynamicResource ContainerColor}" Foreground="{DynamicResource ForegroundColor}" Margin="5,5,0,5" />
 
-                            <TextBox Name="ProjectDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" BorderBrush="#FF050303" BorderThickness="0,1,1,1"/>
-
+                                    <TextBox Name="ProjectDescription" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" BorderBrush="#FF050303" BorderThickness="0,1,1,1" Background="{DynamicResource InputBoxColor}" Foreground="{DynamicResource InputBoxForegroundColor}" Margin="0,5,5,5"/>
+                                </Grid>
+                            </Border>
                             <!-- Features -->
-                            <Label x:Name="FeaturesHeader" Content="Features" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,0,1"/>
+                            <Label x:Name="FeaturesHeader" Content="Features" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,0,1" Background="{DynamicResource ContainerSecondaryColor}" Foreground="{DynamicResource ForegroundColor}" Margin="2,2,2,2"/>
                             <DataGrid Name="FeaturesList" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" SelectionChanged="FeaturesList_SelectionChanged_1"/>
                             <!-- Add items here -->
 
