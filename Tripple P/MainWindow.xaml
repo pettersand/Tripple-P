@@ -26,14 +26,20 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="764*" />
+            <RowDefinition Height="251*" />
         </Grid.RowDefinitions>
         <!--  Menu Bar  -->
-        <Menu Grid.Row="0">
+        <Menu
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Background="{DynamicResource MaterialDesignToolBarBackground}"
+            BorderBrush="{DynamicResource MaterialDesignBackground}"
+            BorderThickness="0,0,0,1">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
+                <MenuItem Click="NewFile_Click" Header="_New" />
+                <MenuItem Click="OpenFile_Click" Header="_Open" />
+                <MenuItem Click="SaveFile_Click" Header="_Save" />
                 <Separator />
                 <MenuItem Header="E_xit" />
             </MenuItem>
@@ -46,9 +52,15 @@
                 <!--  Your view options here  -->
             </MenuItem>
         </Menu>
-        <TabControl Grid.Row="1" Grid.ColumnSpan="2">
+        <TabControl
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2">
             <!--  Planning Tab  -->
-            <TabItem Header="Planning">
+            <TabItem
+                BorderBrush="{DynamicResource MaterialDesignBackground}"
+                BorderThickness="0,0,1,0"
+                Header="Planning">
                 <TabControl TabStripPlacement="Bottom">
                     <!--  Brainstorm Sub-Tab  -->
                     <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="Brainstorm">
