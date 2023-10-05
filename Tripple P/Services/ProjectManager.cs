@@ -12,7 +12,14 @@ namespace Tripple_P.Services
 {
     internal class ProjectManager
     {
-        public void CreateNewProject(string projectName, string projectPath)
+        public class Project
+        {
+            public string ProjectName { get; set; }
+            public DateTime CreatedDate { get; set; }  
+            public DateTime ModifiedDate { get; set; }
+
+        }
+        public static Project CreateNewProject(string projectName, string projectPath)
         {
             // Create the project folder
             string projectFolder = Path.Combine(projectPath, projectName);
@@ -25,16 +32,34 @@ namespace Tripple_P.Services
             Directory.CreateDirectory(Path.Combine(projectFolder, "Assets"));
 
             // Create metadata file
-            var metadata = new
+            Project project = new Project
             {
                 ProjectName = projectName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
             };
 
-            string metadataJson = JsonConvert.SerializeObject(metadata, Formatting.Indented);
+            string metadataJson = JsonConvert.SerializeObject(project, Formatting.Indented);
             File.WriteAllText(Path.Combine(projectFolder, ".metadata.json"), metadataJson);
+
+            return project;
         }
 
+        public static Project OpenExistingProject(string filePath)
+        {
+            string metadataJson = File.ReadAllText(filePath);
+
+            Project project = JsonConvert.DeserializeObject<Project>(metadataJson);
+
+            return project;
+        }
+
+        public static void SaveProject(Project project, string projectFolder)
+        {
+            project.ModifiedDate = DateTime.Now;
+
+            string projectJson = JsonConvert.SerializeObject(project, Formatting.Indented);
+            File.WriteAllText(Path.Combine(projectFolder, ".metadata.json"), projectJson);
+        }
     }
 }
