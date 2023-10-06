@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tripple_P.Models;
 
 namespace Tripple_P.Views.Planning.Brainstorm
 {
@@ -49,14 +50,6 @@ namespace Tripple_P.Views.Planning.Brainstorm
             this.DataContext = this;
 
             Features.Add(new Feature { Name = "Login", Category = "Authentication", Priority = "High", Description = "Create user login feature" });
-        }
-
-        public class Feature
-        {
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public string Priority { get; set; }
-            public string Description { get; set; }
         }
 
         public void LoadProjectDescription(string description)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tripple_P.Models
 {
-    public class Features
+    public class Feature
     {
         public string Name { get; set; }
         public string Category { get; set; }

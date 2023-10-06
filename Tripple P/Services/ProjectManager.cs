@@ -41,9 +41,9 @@ namespace Tripple_P.Services
 
         public static Project OpenExistingProject(string filePath)
         {
-            string metadataJson = File.ReadAllText(filePath);
+            string projectJson = File.ReadAllText(filePath);
 
-            Project project = JsonConvert.DeserializeObject<Project>(metadataJson);
+            Project project = JsonConvert.DeserializeObject<Project>(projectJson);
 
             return project;
         }
