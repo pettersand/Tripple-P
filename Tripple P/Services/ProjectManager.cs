@@ -33,8 +33,8 @@ namespace Tripple_P.Services
                 ModifiedDate = DateTime.Now
             };
 
-            string metadataJson = JsonConvert.SerializeObject(project, Formatting.Indented);
-            File.WriteAllText(Path.Combine(projectFolder, ".metadata.json"), metadataJson);
+            string projectJson = JsonConvert.SerializeObject(project, Formatting.Indented);
+            File.WriteAllText(Path.Combine(projectFolder, ".metadata.ppp"), projectJson);
 
             return project;
         }
@@ -53,7 +53,7 @@ namespace Tripple_P.Services
             project.ModifiedDate = DateTime.Now;
 
             string projectJson = JsonConvert.SerializeObject(project, Formatting.Indented);
-            File.WriteAllText(Path.Combine(projectFolder, ".metadata.json"), projectJson);
+            File.WriteAllText(Path.Combine(projectFolder, ".metadata.ppp"), projectJson);
         }
     }
 }

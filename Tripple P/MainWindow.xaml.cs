@@ -47,7 +47,7 @@ namespace Tripple_P
                 currentProject = ProjectManager.CreateNewProject(projectName, projectPath);
                 currentProjectFolder = System.IO.Path.Combine(projectPath, projectName);
 
-                ProjectManager.CreateNewProject(projectName, projectPath);
+                brainstormControl.SetDataContext(currentProject);
             }
         }
 
@@ -63,7 +63,8 @@ namespace Tripple_P
                 string filename = openFileDialog.FileName;
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
-                ProjectManager.OpenExistingProject(filename);
+
+                brainstormControl.SetDataContext(currentProject);    
             }
         }
 
@@ -71,31 +72,6 @@ namespace Tripple_P
         {
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void FeaturesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void FeaturesList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Brainstorm_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

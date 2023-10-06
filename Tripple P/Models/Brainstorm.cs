@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Tripple_P.Models
 {
+    public class Brainstorm
+    {
+        public string ProjectDescription { get; set; }
+        public List<Feature> Features { get; set; } 
+    }
     public class Feature
     {
         public string Name { get; set; }

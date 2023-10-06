@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Bson;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -47,9 +48,12 @@ namespace Tripple_P.Views.Planning.Brainstorm
         public Brainstorm()
         {
             InitializeComponent();
-            this.DataContext = this;
 
-            Features.Add(new Feature { Name = "Login", Category = "Authentication", Priority = "High", Description = "Create user login feature" });
+        }
+
+        public void SetDataContext(Project project)
+        {
+            this.DataContext = project;
         }
 
         public void LoadProjectDescription(string description)
@@ -62,11 +66,6 @@ namespace Tripple_P.Views.Planning.Brainstorm
         {
             ProjectDescription = ProjectDescriptionTextBox.Text;
             return ProjectDescription;
-        }
-
-        private void FeaturesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
