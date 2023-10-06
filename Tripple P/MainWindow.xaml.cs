@@ -91,5 +91,10 @@ namespace Tripple_P
         {
 
         }
+
+        private void Brainstorm_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

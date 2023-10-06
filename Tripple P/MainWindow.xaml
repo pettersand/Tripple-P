@@ -64,7 +64,7 @@
                 <TabControl TabStripPlacement="Bottom">
                     <!--  Brainstorm Sub-Tab  -->
                     <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="Brainstorm">
-                        <brainstorm:Brainstorm />
+                        <brainstorm:Brainstorm Loaded="Brainstorm_Loaded" />
                     </TabItem>
                     <!--  To Do Sub-Tab  -->
                     <TabItem Header="To Do">

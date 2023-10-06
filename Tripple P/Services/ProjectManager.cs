@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using Tripple_P.Models;
 
 
 
@@ -12,13 +13,6 @@ namespace Tripple_P.Services
 {
     internal class ProjectManager
     {
-        public class Project
-        {
-            public string ProjectName { get; set; }
-            public DateTime CreatedDate { get; set; }  
-            public DateTime ModifiedDate { get; set; }
-
-        }
         public static Project CreateNewProject(string projectName, string projectPath)
         {
             // Create the project folder

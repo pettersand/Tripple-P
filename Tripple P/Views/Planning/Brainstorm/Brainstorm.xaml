@@ -23,7 +23,10 @@
                     Margin="16,16,16,8"
                     Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                     Text="Project Description" />
-                <TextBox Margin="16">
+                <TextBox
+                    Name="ProjectDescriptionTextBox"
+                    Margin="16"
+                    Text="{Binding ProjectDescription, Mode=TwoWay}">
                     <TextBox.Style>
                         <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
                             <Setter Property="materialDesign:HintAssist.Hint" Value="Enter project description here..." />
@@ -35,19 +38,28 @@
 
         <!--  Features  -->
         <materialDesign:Card Grid.Row="1" Margin="16">
-            <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <TextBlock
+                    Grid.Row="0"
                     Margin="16,16,16,8"
                     Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                     Text="Features" />
                 <DataGrid
                     Name="FeaturesDataGrid"
-                    Height="200"
+                    Grid.Row="1"
+                    Height="Auto"
                     Margin="16"
-                    AutoGenerateColumns="False">
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding Features}"
+                    SelectionChanged="FeaturesDataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn
-                            Width="*"
+                            Width="Auto"
                             Binding="{Binding Name}"
                             Header="Name" />
                         <DataGridTextColumn
@@ -59,13 +71,13 @@
                             Binding="{Binding Priority}"
                             Header="Priority" />
                         <DataGridTextColumn
-                            Width="Auto"
+                            Width="*"
                             Binding="{Binding Description}"
                             Header="Description" />
                     </DataGrid.Columns>
                     <!--  Data binding or column definitions here  -->
                 </DataGrid>
-            </StackPanel>
+            </Grid>
         </materialDesign:Card>
     </Grid>
 </UserControl>
