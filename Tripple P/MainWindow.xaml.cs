@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 using System.IO;
 using Tripple_P.Services;
+using Tripple_P.Models;
 
 namespace Tripple_P
 {
@@ -24,7 +25,7 @@ namespace Tripple_P
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ProjectManager.Project currentProject;
+        private Project currentProject;
         private string currentProjectFolder;
 
         public MainWindow()
