@@ -9,7 +9,10 @@ namespace Tripple_P.Models
     public class Brainstorm
     {
         public string ProjectDescription { get; set; }
-        public List<Feature> Features { get; set; } 
+        public List<Feature> Features { get; set; }
+
+
+
     }
     public class Feature
     {
@@ -18,4 +21,5 @@ namespace Tripple_P.Models
         public string Priority { get; set; }
         public string Description { get; set; }
     }
+
 }
