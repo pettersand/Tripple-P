@@ -48,6 +48,9 @@ namespace Tripple_P.Views.Planning.Brainstorm
         public Brainstorm()
         {
             InitializeComponent();
+            Features = new ObservableCollection<Feature>();
+            Features.Add(new Feature());
+            this.DataContext = this;
 
         }
 
@@ -56,10 +59,28 @@ namespace Tripple_P.Views.Planning.Brainstorm
             this.DataContext = project;
         }
 
-        public void LoadProjectDescription(string description)
+        public void LoadData(Models.Brainstorm brainstormData)
         {
-            ProjectDescription = description;
-            ProjectDescriptionTextBox.Text = description;
+            if (brainstormData != null)
+            {
+                ProjectDescription = brainstormData.ProjectDescription;
+                ProjectDescriptionTextBox.Text = brainstormData.ProjectDescription;
+                Features.Clear();
+                foreach (var feature in brainstormData.Features)
+                {
+                    Features.Add(feature);
+                }
+            }
+        }
+
+        public Models.Brainstorm GetData()
+        {
+            var brainstormData = new Models.Brainstorm
+            {
+                ProjectDescription = SaveProjectDescription(),
+                Features = new List<Feature>(Features)
+            };
+            return brainstormData;
         }
 
         public string SaveProjectDescription()

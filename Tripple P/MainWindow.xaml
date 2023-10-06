@@ -36,7 +36,7 @@
             Background="{DynamicResource MaterialDesignToolBarBackground}"
             BorderBrush="{DynamicResource MaterialDesignBackground}"
             BorderThickness="0,0,0,1">
-            <MenuItem Click="MenuItem_Click" Header="_File">
+            <MenuItem Header="_File">
                 <MenuItem Click="NewProject_Click" Header="_New" />
                 <MenuItem Click="OpenProject_Click" Header="_Open" />
                 <MenuItem Click="SaveProject_Click" Header="_Save" />

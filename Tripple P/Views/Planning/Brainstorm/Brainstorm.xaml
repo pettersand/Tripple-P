@@ -55,8 +55,7 @@
                     Margin="16"
                     VerticalAlignment="Stretch"
                     AutoGenerateColumns="False"
-                    ItemsSource="{Binding Features}"
-                    SelectionChanged="FeaturesDataGrid_SelectionChanged">
+                    ItemsSource="{Binding Features}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="Auto"
