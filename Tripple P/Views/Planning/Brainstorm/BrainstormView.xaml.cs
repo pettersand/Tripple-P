@@ -21,9 +21,9 @@ using static Tripple_P.Services.Interfaces;
 namespace Tripple_P.Views.Planning.Brainstorm
 {
     /// <summary>
-    /// Interaction logic for Brainstorms.xaml
+    /// Interaction logic for Brainstorm.xaml
     /// </summary>
-    public partial class Brainstorm : UserControl, INotifyPropertyChanged, IMyDataControl
+    public partial class BrainstormView : UserControl, INotifyPropertyChanged
 
     {
         private string _projectDescription;

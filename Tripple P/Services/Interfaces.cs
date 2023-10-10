@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tripple_P.Services
 {
-    internal class Interfaces
+    public interface IMyDataControl
     {
-        public interface IMyDataControl
-        {
-            void LoadData();
-            object GetData();
-        }
+        void LoadData();
+        object GetData();
     }
 }
