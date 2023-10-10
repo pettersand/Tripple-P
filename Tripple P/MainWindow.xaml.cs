@@ -70,6 +70,15 @@ namespace Tripple_P
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
+            var brainstormData = brainstormControl.GetData();
+
+            if (currentProject == null)
+            {
+                currentProject.PlanningData = new Project.Planning();
+            }
+
+            currentProject.PlanningData.BrainstormData = brainstormData;
+
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");
         }

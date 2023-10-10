@@ -16,13 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Tripple_P.Models;
+using static Tripple_P.Services.Interfaces;
 
 namespace Tripple_P.Views.Planning.Brainstorm
 {
     /// <summary>
     /// Interaction logic for Brainstorms.xaml
     /// </summary>
-    public partial class Brainstorm : UserControl, INotifyPropertyChanged
+    public partial class Brainstorm : UserControl, INotifyPropertyChanged, IMyDataControl
 
     {
         private string _projectDescription;
@@ -45,12 +46,12 @@ namespace Tripple_P.Views.Planning.Brainstorm
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Brainstorm()
+        public BrainstormView()
         {
             InitializeComponent();
             Features = new ObservableCollection<Feature>();
             Features.Add(new Feature());
-            this.DataContext = this;
+            this.DataContext = new Models.Brainstorm();
 
         }
 

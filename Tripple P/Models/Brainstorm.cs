@@ -11,6 +11,11 @@ namespace Tripple_P.Models
         public string ProjectDescription { get; set; }
         public List<Feature> Features { get; set; }
 
+        public Brainstorm() 
+        {
+            ProjectDescription = "";
+            Features = new List<Feature>();
+        }
 
 
     }
@@ -20,6 +25,14 @@ namespace Tripple_P.Models
         public string Category { get; set; }
         public string Priority { get; set; }
         public string Description { get; set; }
+
+        public Feature()
+        {
+            Name = "Enter Name";
+            Category = "Ex. Authentication";
+            Priority = "Low - High";
+            Description = "Enter description of feature here.";
+        }
     }
 
 }

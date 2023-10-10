@@ -14,11 +14,19 @@ namespace Tripple_P.Models
         public DateTime ModifiedDate { get; set; }
         public Planning PlanningData { get; set; }
 
+        public Project()
+        {
+            PlanningData = new Planning();
+        }
+
         public class Planning
         {
             public Brainstorm BrainstormData { get; set; }
+
+            public Planning()
+            {
+                BrainstormData = new Brainstorm();
+            }
         }
     }
-
-   
 }
