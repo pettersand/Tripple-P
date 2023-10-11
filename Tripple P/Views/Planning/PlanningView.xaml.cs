@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Tripple_P.Services;
+using Tripple_P.Models;
 using Tripple_P.Views.Planning.Brainstorm;
+using static Tripple_P.Models.Project;
 
 namespace Tripple_P.Views.Planning
 {
@@ -27,37 +29,29 @@ namespace Tripple_P.Views.Planning
             InitializeComponent();
         }
 
-        public CollectPlanningData()
+        public PlanningTab CollectPlanningData()
         {
-            Dictionary<string, object> planningData = new Dictionary<string, object>();
-            foreach (var depObj in Utilities.FindVisualChildren(this))
+            PlanningTab planningData = new PlanningTab();
+
+            BrainstormView brainstormView = this.FindName("brainstormControl") as BrainstormView;
+            if (brainstormView != null)
             {
-                var control = depObj as IMyDataControl;
-                if (control != null)
-                {
-                    var data = control.GetData();
-                    planningData.Add(control.GetType().Name, data);
-                }
+                planningData.BrainstormData = brainstormView.GetData();
             }
-                return planningData;
+
+            // TODO: Collect data from other child controls
+
+            return planningData;
         }
 
-        public void LoadPlanningData(Planning planningData)
+        public void LoadPlanningData(PlanningTab planningData)
         {
             if (planningData == null) return;
 
-
-            foreach (var depObj in Utilities.FindVisualChildren(this))
+            BrainstormView brainstormView = this.FindName("brainstormControl") as BrainstormView;
+            if (brainstormView != null && planningData.BrainstormData != null)
             {
-                var control = depObj as IMyDataControl;
-                if (control != null)
-                {
-                    var controlType = control.GetType().Name;
-                    if (planningData.BrainstormData != null && controlType == "BrainstormView")
-                    {
-                        control.LoadData(planningData.BrainstormData);
-                    }
-                }
+                brainstormView.LoadData(planningData.BrainstormData);
             }
         }
 
