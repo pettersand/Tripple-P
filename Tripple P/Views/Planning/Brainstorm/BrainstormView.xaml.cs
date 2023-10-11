@@ -16,14 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Tripple_P.Models;
-using static Tripple_P.Services.Interfaces;
+using Tripple_P.Services;
 
 namespace Tripple_P.Views.Planning.Brainstorm
 {
     /// <summary>
     /// Interaction logic for Brainstorm.xaml
     /// </summary>
-    public partial class BrainstormView : UserControl, INotifyPropertyChanged
+    public partial class BrainstormView : UserControl, INotifyPropertyChanged, IMyDataControl
 
     {
         private string _projectDescription;
@@ -60,9 +60,9 @@ namespace Tripple_P.Views.Planning.Brainstorm
             this.DataContext = project;
         }
 
-        public void LoadData(Models.Brainstorm brainstormData)
+        public void LoadData()
         {
-            if (brainstormData != null)
+            if (this.DataContext is Models.Brainstorm brainstormData)
             {
                 ProjectDescription = brainstormData.ProjectDescription;
                 ProjectDescriptionTextBox.Text = brainstormData.ProjectDescription;
@@ -74,7 +74,7 @@ namespace Tripple_P.Views.Planning.Brainstorm
             }
         }
 
-        public Models.Brainstorm GetData()
+        public object GetData()
         {
             var brainstormData = new Models.Brainstorm
             {
