@@ -29,19 +29,21 @@ namespace Tripple_P.Views.Planning.Brainstorm
         private string _projectDescription;
         public string ProjectDescription
         {
-            get { return _projectDescription; }
-        set 
-        {
-            if (_projectDescription != value)
+            get => _projectDescription;
+            set
+            {
+                if (_projectDescription != value)
                 {
                     _projectDescription = value;
-                    OnPropertyChanged("ProjectDescription");
+                    OnPropertyChanged(nameof(ProjectDescription));
                 }
             }
         }
 
+        public ObservableCollection<Feature> Features { get; } = new ObservableCollection<Feature>();
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<Feature> Features { get; set; } = new ObservableCollection<Feature>();
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -50,10 +52,10 @@ namespace Tripple_P.Views.Planning.Brainstorm
         public BrainstormView()
         {
             InitializeComponent();
-            Features = new ObservableCollection<Feature>();
-            Features.Add(new Feature());
-            this.DataContext = new Models.BrainstormTab();
-
+            Features = new ObservableCollection<Feature>
+            {
+                new Feature()
+            };
         }
 
         public void SetDataContext(Project project)
@@ -65,6 +67,7 @@ namespace Tripple_P.Views.Planning.Brainstorm
         {
             if (data != null)
             {
+                this.DataContext = data;
                 ProjectDescription = data.ProjectDescription;
                 Features.Clear();
                 foreach (var feature in data.Features)
@@ -85,8 +88,9 @@ namespace Tripple_P.Views.Planning.Brainstorm
 
         public void ResetData()
         {
-            ProjectDescriptionTextBox.Text = "";
+            ProjectDescription = "";
             Features.Clear();
+            this.DataContext = new BrainstormTab();
         }
     }
 }

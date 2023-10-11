@@ -59,19 +59,19 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="Auto"
-                            Binding="{Binding Name}"
+                            Binding="{Binding Name, Mode=TwoWay}"
                             Header="Name" />
                         <DataGridTextColumn
                             Width="Auto"
-                            Binding="{Binding Category}"
+                            Binding="{Binding Category, Mode=TwoWay}"
                             Header="Category" />
                         <DataGridTextColumn
                             Width="Auto"
-                            Binding="{Binding Priority}"
+                            Binding="{Binding Priority, Mode=TwoWay}"
                             Header="Priority" />
                         <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding Description}"
+                            Binding="{Binding Description, Mode=TwoWay}"
                             Header="Description" />
                     </DataGrid.Columns>
 
