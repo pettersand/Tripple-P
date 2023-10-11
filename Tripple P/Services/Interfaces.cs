@@ -8,7 +8,7 @@ namespace Tripple_P.Services
 {
     public interface IMyDataControl
     {
-        void LoadData();
+        void LoadData(object data);
         object GetData();
     }
 }

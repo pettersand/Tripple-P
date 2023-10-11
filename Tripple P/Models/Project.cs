@@ -13,6 +13,8 @@ namespace Tripple_P.Models
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public Planning PlanningData { get; set; }
+        public Dictionary<string, object> AllData { get; set; }
+
 
         public Project()
         {
@@ -22,6 +24,7 @@ namespace Tripple_P.Models
         public class Planning
         {
             public Brainstorm BrainstormData { get; set; }
+            public Dictionary<string, object> AllData { get; set; }
 
             public Planning()
             {

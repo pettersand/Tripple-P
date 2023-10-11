@@ -74,7 +74,7 @@
                             Binding="{Binding Description}"
                             Header="Description" />
                     </DataGrid.Columns>
-                    <!--  Data binding or column definitions here  -->
+
                 </DataGrid>
             </Grid>
         </materialDesign:Card>

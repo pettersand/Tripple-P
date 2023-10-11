@@ -2,12 +2,11 @@
     x:Class="Tripple_P.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:brainstorm="clr-namespace:Tripple_P.Views.Planning.Brainstorm"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Tripple_P"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:roadmap="clr-namespace:Tripple_P.Views.Planning.Roadmap"
+    xmlns:planning="clr-namespace:Tripple_P.Views.Planning"
     Title="MainWindow"
     Width="1920"
     Height="1080"
@@ -55,31 +54,18 @@
         <TabControl
             Grid.Row="1"
             Grid.RowSpan="2"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            TabStripPlacement="Bottom">
             <!--  Planning Tab  -->
             <TabItem
                 BorderBrush="{DynamicResource MaterialDesignBackground}"
                 BorderThickness="0,0,1,0"
-                Header="Planning">
-                <TabControl TabStripPlacement="Bottom">
-                    <!--  Brainstorm Sub-Tab  -->
-                    <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="Brainstorm">
-                        <brainstorm:BrainstormView x:Name="brainstormControl" />
-                    </TabItem>
-                    <!--  To Do Sub-Tab  -->
-                    <TabItem Header="To Do">
-                        <!--  Your content here  -->
-                    </TabItem>
-                    <!--  Resources Sub-Tab  -->
-                    <TabItem Header="Roadmap">
-                        <roadmap:Roadmap />
-                    </TabItem>
-                </TabControl>
-
-            </TabItem>
+                Header="Planning" />
+            <planning:PlanningView />
 
             <!--  Progress Tab  -->
             <TabItem Header="Progress">
+
                 <!--  Sub-Tabs will go here  -->
             </TabItem>
 

@@ -17,6 +17,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Tripple_P.Services;
 using Tripple_P.Models;
+using Tripple_P.Views.Planning;
 
 namespace Tripple_P
 {
@@ -47,7 +48,6 @@ namespace Tripple_P
                 currentProject = ProjectManager.CreateNewProject(projectName, projectPath);
                 currentProjectFolder = System.IO.Path.Combine(projectPath, projectName);
 
-                brainstormControl.SetDataContext(currentProject);
             }
         }
 
@@ -64,20 +64,35 @@ namespace Tripple_P
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
 
-                brainstormControl.SetDataContext(currentProject);    
+                var allData = currentProject.PlanningData.AllData;
+
+                foreach (var depObj in Utilities.FindVisualChildren<IMyDataControl>(this))
+                {
+                    if (allData.ContainsKey(depObj.GetType().Name))
+                    {
+                        depObj.LoadData(allData[depObj.GetType().Name]);
+                    }
+                }
             }
         }
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
-            var brainstormData = brainstormControl.GetData();
-
             if (currentProject == null)
             {
-                currentProject.PlanningData = new Project.Planning();
+                currentProject = new Project();
             }
 
-            currentProject.PlanningData.BrainstormData = brainstormData;
+            Dictionary<string, object> allData = new Dictionary<string, object>();
+
+            
+            PlanningView planningView = new PlanningView;
+            var planningData = planningView.CollectPlanningData();
+            allData.Add("PlanningData", planningData);
+
+            // TODO: Do the same for other main tabs...
+
+            currentProject.AllData = allData;
 
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");
