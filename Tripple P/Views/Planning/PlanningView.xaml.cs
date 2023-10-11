@@ -45,10 +45,10 @@ namespace Tripple_P.Views.Planning
         {
             if (planningData == null) return;
 
-            // Cast the object back to the original type, e.g., Dictionary<string, object>
+
             var data = planningData as Dictionary<string, object>;
 
-            // Load data into each sub-tab control
+
             foreach (var depObj in Utilities.FindVisualChildren(this))
             {
                 var control = depObj as IMyDataControl;

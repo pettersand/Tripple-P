@@ -15,25 +15,21 @@
         <TabControl
             Grid.Row="1"
             Grid.RowSpan="2"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            TabStripPlacement="Bottom">
             <!--  Planning Tab  -->
-            <TabItem
-                BorderBrush="{DynamicResource MaterialDesignBackground}"
-                BorderThickness="0,0,1,0"
-                Header="Planning">
-                <TabControl TabStripPlacement="Bottom">
-                    <!--  Brainstorm Sub-Tab  -->
-                    <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="Brainstorm">
-                        <brainstorm:BrainstormView x:Name="brainstormControl" />
-                    </TabItem>
-
-                    <TabItem Header="To Do" />
-
-                    <TabItem Header="Roadmap">
-                        <roadmap:Roadmap />
-                    </TabItem>
-                </TabControl>
+            <!--  Brainstorm Sub-Tab  -->
+            <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="Brainstorm">
+                <brainstorm:BrainstormView x:Name="brainstormControl" />
             </TabItem>
+
+            <TabItem Header="To Do" />
+
+            <TabItem Header="Roadmap">
+                <roadmap:Roadmap />
+            </TabItem>
+
+
         </TabControl>
     </Grid>
 </UserControl>

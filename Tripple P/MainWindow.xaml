@@ -55,14 +55,14 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
-            TabStripPlacement="Bottom">
+            TabStripPlacement="Top">
             <!--  Planning Tab  -->
             <TabItem
                 BorderBrush="{DynamicResource MaterialDesignBackground}"
                 BorderThickness="0,0,1,0"
-                Header="Planning" />
-            <planning:PlanningView />
-
+                Header="Planning">
+                <planning:PlanningView />
+            </TabItem>
             <!--  Progress Tab  -->
             <TabItem Header="Progress">
 
