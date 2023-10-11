@@ -23,7 +23,7 @@ namespace Tripple_P.Views.Planning.Brainstorm
     /// <summary>
     /// Interaction logic for Brainstorm.xaml
     /// </summary>
-    public partial class BrainstormView : UserControl, INotifyPropertyChanged, IMyDataControl
+    public partial class BrainstormView : UserControl, INotifyPropertyChanged
 
     {
         private string _projectDescription;
@@ -39,6 +39,7 @@ namespace Tripple_P.Views.Planning.Brainstorm
                 }
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Feature> Features { get; set; } = new ObservableCollection<Feature>();
         protected virtual void OnPropertyChanged(string propertyName)
@@ -51,43 +52,41 @@ namespace Tripple_P.Views.Planning.Brainstorm
             InitializeComponent();
             Features = new ObservableCollection<Feature>();
             Features.Add(new Feature());
-            this.DataContext = new Models.Brainstorm();
+            this.DataContext = new Models.BrainstormTab();
 
         }
 
         public void SetDataContext(Project project)
         {
-            this.DataContext = project;
+            this.DataContext = project.PlanningData.BrainstormData;
         }
 
-        public void LoadData(object data)
+        public void LoadData(BrainstormTab data)
         {
-            if (this.DataContext is Models.Brainstorm brainstormData)
+            if (data != null)
             {
-                ProjectDescription = brainstormData.ProjectDescription;
-                ProjectDescriptionTextBox.Text = brainstormData.ProjectDescription;
+                ProjectDescription = data.ProjectDescription;
                 Features.Clear();
-                foreach (var feature in brainstormData.Features)
+                foreach (var feature in data.Features)
                 {
                     Features.Add(feature);
                 }
             }
         }
 
-        public object GetData()
+        public BrainstormTab GetData()
         {
-            var brainstormData = new Models.Brainstorm
+            return new BrainstormTab
             {
-                ProjectDescription = SaveProjectDescription(),
+                ProjectDescription = ProjectDescription,
                 Features = new List<Feature>(Features)
             };
-            return brainstormData;
         }
 
-        public string SaveProjectDescription()
+        public void ResetData()
         {
-            ProjectDescription = ProjectDescriptionTextBox.Text;
-            return ProjectDescription;
+            ProjectDescriptionTextBox.Text = "";
+            Features.Clear();
         }
     }
 }

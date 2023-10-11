@@ -34,6 +34,15 @@ namespace Tripple_P
             InitializeComponent();
         }
 
+        private void ResetUI()
+        {
+            foreach (var depObj in Utilities.FindVisualChildren(this))
+            {
+                var control = depObj as IMyDataControl;
+                control?.ResetData();
+            }
+        }
+
         private void NewProject_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -48,6 +57,7 @@ namespace Tripple_P
                 currentProject = ProjectManager.CreateNewProject(projectName, projectPath);
                 currentProjectFolder = System.IO.Path.Combine(projectPath, projectName);
 
+                ResetUI();
             }
         }
 
@@ -64,11 +74,11 @@ namespace Tripple_P
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
 
-                var allData = currentProject.AllData;  // Changed from PlanningData.AllData to AllData
+                var planningData = currentProject.PlanningData;  // Changed from PlanningData.AllData to AllData
 
                 // Assuming you have references to your main tab views
                 PlanningView planningView = new PlanningView();
-                planningView.LoadPlanningData(allData.ContainsKey("PlanningData") ? allData["PlanningData"] : null);
+                planningView.LoadPlanningData(planningData);
 
                 // TODO: Do the same for other main tabs...
             }
@@ -81,16 +91,12 @@ namespace Tripple_P
                 currentProject = new Project();
             }
 
-            Dictionary<string, object> allData = new Dictionary<string, object>();
-
             
-            PlanningView planningView = new PlanningView();
+            PlanningView planningView = this.planningControl;
             var planningData = planningView.CollectPlanningData();
-            allData.Add("PlanningData", planningData);
+            currentProject.PlanningData = planningData;
 
             // TODO: Do the same for other main tabs...
-
-            currentProject.AllData = allData;
 
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");

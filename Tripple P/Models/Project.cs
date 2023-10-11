@@ -12,23 +12,20 @@ namespace Tripple_P.Models
         public string ProjectName { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public Planning PlanningData { get; set; }
-        public Dictionary<string, object> AllData { get; set; }
-
+        public PlanningTab PlanningData { get; set; }
 
         public Project()
         {
-            PlanningData = new Planning();
+            PlanningData = new PlanningTab();
         }
 
-        public class Planning
+        public class PlanningTab
         {
-            public Brainstorm BrainstormData { get; set; }
-            public Dictionary<string, object> AllData { get; set; }
+            public BrainstormTab BrainstormData { get; set; }
 
-            public Planning()
+            public PlanningTab()
             {
-                BrainstormData = new Brainstorm();
+                BrainstormData = new BrainstormTab();
             }
         }
     }

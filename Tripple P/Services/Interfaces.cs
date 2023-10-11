@@ -11,5 +11,6 @@ namespace Tripple_P.Services
     {
         void LoadData(object data);
         object GetData();
+        void ResetData();
     }
 }

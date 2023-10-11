@@ -61,7 +61,7 @@
                 BorderBrush="{DynamicResource MaterialDesignBackground}"
                 BorderThickness="0,0,1,0"
                 Header="Planning">
-                <planning:PlanningView />
+                <planning:PlanningView x:Name="planningControl"/>
             </TabItem>
             <!--  Progress Tab  -->
             <TabItem Header="Progress">

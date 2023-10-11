@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Tripple_P.Services;
+using Tripple_P.Views.Planning.Brainstorm;
 
 namespace Tripple_P.Views.Planning
 {
@@ -26,7 +27,7 @@ namespace Tripple_P.Views.Planning
             InitializeComponent();
         }
 
-        public Dictionary<string, object> CollectPlanningData()
+        public CollectPlanningData()
         {
             Dictionary<string, object> planningData = new Dictionary<string, object>();
             foreach (var depObj in Utilities.FindVisualChildren(this))
@@ -41,20 +42,21 @@ namespace Tripple_P.Views.Planning
                 return planningData;
         }
 
-        public void LoadPlanningData(object planningData)
+        public void LoadPlanningData(Planning planningData)
         {
             if (planningData == null) return;
-
-
-            var data = planningData as Dictionary<string, object>;
 
 
             foreach (var depObj in Utilities.FindVisualChildren(this))
             {
                 var control = depObj as IMyDataControl;
-                if (control != null && data.ContainsKey(control.GetType().Name))
+                if (control != null)
                 {
-                    control.LoadData(data[control.GetType().Name]);
+                    var controlType = control.GetType().Name;
+                    if (planningData.BrainstormData != null && controlType == "BrainstormView")
+                    {
+                        control.LoadData(planningData.BrainstormData);
+                    }
                 }
             }
         }
