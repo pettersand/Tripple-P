@@ -36,9 +36,7 @@ namespace Tripple_P
 
         private void ResetUI()
         {
-
-            PlanningView planningView = this.FindName("planningControl") as PlanningView;
-            if (planningView != null)
+            if (this.FindName("planningControl") is PlanningView planningView)
             {
                 planningView.ResetData();
             }
@@ -48,9 +46,11 @@ namespace Tripple_P
 
         private void NewProject_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Project Files|*.ppp";
-            dialog.Title = "Create a New Project";
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = "Project Files|*.ppp",
+                Title = "Create a New Project"
+            };
 
             if  (dialog.ShowDialog() == true)
             {
@@ -66,9 +66,11 @@ namespace Tripple_P
 
         private void OpenProject_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".ppp";
-            openFileDialog.Filter = "Tripple P Project Files (*.ppp)|*.ppp";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                DefaultExt = ".ppp",
+                Filter = "Tripple P Project Files (*.ppp)|*.ppp"
+            };
 
             Nullable<bool> result = openFileDialog.ShowDialog();
             if (result == true)
@@ -77,8 +79,7 @@ namespace Tripple_P
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
 
-                PlanningView planningView = this.FindName("planningControl") as PlanningView;
-                if (planningView != null)
+                if (this.FindName("planningControl") is PlanningView planningView)
                 {
                     planningView.LoadPlanningData(currentProject.PlanningData);
                 }
@@ -94,8 +95,7 @@ namespace Tripple_P
                 currentProject = new Project();
             }
 
-            PlanningView planningView = this.FindName("planningControl") as PlanningView;
-            if (planningView != null)
+            if (this.FindName("planningControl") is PlanningView planningView)
             {
                 currentProject.PlanningData = planningView.CollectPlanningData();
             }

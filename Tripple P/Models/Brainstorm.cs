@@ -28,10 +28,10 @@ namespace Tripple_P.Models
 
         public Feature()
         {
-            Name = "Enter Name";
-            Category = "Ex. Authentication";
-            Priority = "Low - High";
-            Description = "Enter description of feature here.";
+            Name = "";
+            Category = "";
+            Priority = "";
+            Description = "";
         }
     }
 
