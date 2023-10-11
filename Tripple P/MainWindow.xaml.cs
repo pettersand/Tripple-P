@@ -36,11 +36,14 @@ namespace Tripple_P
 
         private void ResetUI()
         {
-            foreach (var depObj in Utilities.FindVisualChildren(this))
+
+            PlanningView planningView = this.FindName("planningControl") as PlanningView;
+            if (planningView != null)
             {
-                var control = depObj as IMyDataControl;
-                control?.ResetData();
+                planningView.ResetData();
             }
+
+            // TODO: Reset data for other main tabs...
         }
 
         private void NewProject_Click(object sender, RoutedEventArgs e)
@@ -74,11 +77,11 @@ namespace Tripple_P
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
 
-                var planningData = currentProject.PlanningData;  // Changed from PlanningData.AllData to AllData
-
-                // Assuming you have references to your main tab views
-                PlanningView planningView = new PlanningView();
-                planningView.LoadPlanningData(planningData);
+                PlanningView planningView = this.FindName("planningControl") as PlanningView;
+                if (planningView != null)
+                {
+                    planningView.LoadPlanningData(currentProject.PlanningData);
+                }
 
                 // TODO: Do the same for other main tabs...
             }
@@ -91,10 +94,11 @@ namespace Tripple_P
                 currentProject = new Project();
             }
 
-            
-            PlanningView planningView = this.planningControl;
-            var planningData = planningView.CollectPlanningData();
-            currentProject.PlanningData = planningData;
+            PlanningView planningView = this.FindName("planningControl") as PlanningView;
+            if (planningView != null)
+            {
+                currentProject.PlanningData = planningView.CollectPlanningData();
+            }
 
             // TODO: Do the same for other main tabs...
 

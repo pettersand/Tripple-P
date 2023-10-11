@@ -20,7 +20,7 @@ using static Tripple_P.Models.Project;
 namespace Tripple_P.Views.Planning
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for PlanningView.xaml
     /// </summary>
     public partial class PlanningView : UserControl
     {
@@ -29,12 +29,21 @@ namespace Tripple_P.Views.Planning
             InitializeComponent();
         }
 
+        public void ResetData()
+        {
+            if (this.FindName("brainstormControl") is BrainstormView brainstormView)
+            {
+                brainstormView.ResetData();
+            }
+
+            // TODO: Reset data for other child controls...
+        }
+
         public PlanningTab CollectPlanningData()
         {
             PlanningTab planningData = new PlanningTab();
 
-            BrainstormView brainstormView = this.FindName("brainstormControl") as BrainstormView;
-            if (brainstormView != null)
+            if (this.FindName("brainstormControl") is BrainstormView brainstormView)
             {
                 planningData.BrainstormData = brainstormView.GetData();
             }
@@ -48,8 +57,7 @@ namespace Tripple_P.Views.Planning
         {
             if (planningData == null) return;
 
-            BrainstormView brainstormView = this.FindName("brainstormControl") as BrainstormView;
-            if (brainstormView != null && planningData.BrainstormData != null)
+            if (this.FindName("brainstormControl") is BrainstormView brainstormView && planningData.BrainstormData != null)
             {
                 brainstormView.LoadData(planningData.BrainstormData);
             }
