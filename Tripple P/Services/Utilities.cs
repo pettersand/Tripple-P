@@ -10,21 +10,24 @@ namespace Tripple_P.Services
 {
     public static class Utilities
     {
-        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        public static IEnumerable<DependencyObject> FindVisualChildren(DependencyObject depObj)
         {
             if (depObj != null)
             {
                 for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
                     DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
+                    if (child != null && child is IMyDataControl)
                     {
-                        yield return (T)child;
+                        yield return child;
                     }
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    foreach (DependencyObject childOfChild in FindVisualChildren(child))
                     {
-                        yield return childOfChild;
+                        if (childOfChild is IMyDataControl)
+                        {
+                            yield return childOfChild;
+                        }
                     }
                 }
             }

@@ -64,15 +64,13 @@ namespace Tripple_P
                 currentProject = ProjectManager.OpenExistingProject(filename);
                 currentProjectFolder = System.IO.Path.GetDirectoryName(filename);
 
-                var allData = currentProject.PlanningData.AllData;
+                var allData = currentProject.AllData;  // Changed from PlanningData.AllData to AllData
 
-                foreach (var depObj in Utilities.FindVisualChildren<IMyDataControl>(this))
-                {
-                    if (allData.ContainsKey(depObj.GetType().Name))
-                    {
-                        depObj.LoadData(allData[depObj.GetType().Name]);
-                    }
-                }
+                // Assuming you have references to your main tab views
+                PlanningView planningView = new PlanningView();
+                planningView.LoadPlanningData(allData.ContainsKey("PlanningData") ? allData["PlanningData"] : null);
+
+                // TODO: Do the same for other main tabs...
             }
         }
 
@@ -86,7 +84,7 @@ namespace Tripple_P
             Dictionary<string, object> allData = new Dictionary<string, object>();
 
             
-            PlanningView planningView = new PlanningView;
+            PlanningView planningView = new PlanningView();
             var planningData = planningView.CollectPlanningData();
             allData.Add("PlanningData", planningData);
 

@@ -60,7 +60,7 @@ namespace Tripple_P.Views.Planning.Brainstorm
             this.DataContext = project;
         }
 
-        public void LoadData()
+        public void LoadData(object data)
         {
             if (this.DataContext is Models.Brainstorm brainstormData)
             {

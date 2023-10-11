@@ -29,12 +29,35 @@ namespace Tripple_P.Views.Planning
         public Dictionary<string, object> CollectPlanningData()
         {
             Dictionary<string, object> planningData = new Dictionary<string, object>();
-            foreach (var control in Utilities.FindVisualChildren<IMyDataControl>(this))
+            foreach (var depObj in Utilities.FindVisualChildren(this))
             {
-                var data = control.GetData();
-                planningData.Add(control.GetType().Name, data);
+                var control = depObj as IMyDataControl;
+                if (control != null)
+                {
+                    var data = control.GetData();
+                    planningData.Add(control.GetType().Name, data);
+                }
             }
-            return planningData;
+                return planningData;
         }
+
+        public void LoadPlanningData(object planningData)
+        {
+            if (planningData == null) return;
+
+            // Cast the object back to the original type, e.g., Dictionary<string, object>
+            var data = planningData as Dictionary<string, object>;
+
+            // Load data into each sub-tab control
+            foreach (var depObj in Utilities.FindVisualChildren(this))
+            {
+                var control = depObj as IMyDataControl;
+                if (control != null && data.ContainsKey(control.GetType().Name))
+                {
+                    control.LoadData(data[control.GetType().Name]);
+                }
+            }
+        }
+
     }
 }
