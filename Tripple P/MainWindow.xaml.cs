@@ -85,6 +85,8 @@ namespace Tripple_P
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
+            Keyboard.ClearFocus();
+
             if (currentProject == null)
             {
                 currentProject = new Project();
