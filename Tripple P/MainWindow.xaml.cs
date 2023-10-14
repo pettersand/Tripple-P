@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using System.IO;
+using System.Diagnostics;
 using Tripple_P.Services;
 using Tripple_P.Models;
 using Tripple_P.Views.Planning;
@@ -60,6 +61,11 @@ namespace Tripple_P
                 currentProject = ProjectManager.CreateNewProject(projectName, projectPath);
                 currentProjectFolder = System.IO.Path.Combine(projectPath, projectName);
 
+                if (this.FindName("planningControl") is PlanningView planningView)
+                {
+                    planningView.ResetData(currentProject);
+                }
+
                 ResetUI();
             }
         }
@@ -95,13 +101,7 @@ namespace Tripple_P
                 currentProject = new Project();
             }
 
-            if (this.FindName("planningControl") is PlanningView planningView)
-            {
-                currentProject.PlanningData = planningView.CollectPlanningData();
-            }
-
-            // TODO: Do the same for other main tabs...
-
+            // No need to collect data again, just save the currentProject object
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");
         }

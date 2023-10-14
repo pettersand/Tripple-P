@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -58,11 +60,6 @@ namespace Tripple_P.Views.Planning.Brainstorm
             };
         }
 
-        public void SetDataContext(Project project)
-        {
-            this.DataContext = project.PlanningData.BrainstormData;
-        }
-
         public void LoadData(BrainstormTab data)
         {
             if (data != null)
@@ -79,18 +76,24 @@ namespace Tripple_P.Views.Planning.Brainstorm
 
         public BrainstormTab GetData()
         {
-            return new BrainstormTab
+            Debug.WriteLine("Entering GetData");
+            Debug.WriteLine($"Start of GetData - ProjectDescription: {ProjectDescription}, Features Count: {Features.Count}");
+
+            var data = new BrainstormTab
             {
                 ProjectDescription = ProjectDescription,
                 Features = new List<Feature>(Features)
             };
+            Debug.WriteLine($"Collected Data - ProjectDescription: {data.ProjectDescription}, Features Count: {data.Features.Count}");
+            Debug.WriteLine("Exiting GetData");
+            return data;
         }
 
-        public void ResetData()
+        public void ResetData(Project project)
         {
             ProjectDescription = "";
             Features.Clear();
-            this.DataContext = new BrainstormTab();
+            this.DataContext = project.PlanningData.BrainstormData;
         }
     }
 }

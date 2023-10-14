@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using Tripple_P.Models;
 
@@ -44,10 +45,17 @@ namespace Tripple_P.Services
 
         public static void SaveProject(Project project, string projectFolder)
         {
+            Debug.WriteLine("Entering SaveProject");
+
             project.ModifiedDate = DateTime.Now;
+            Debug.WriteLine($"Before Serialization - ProjectName: {project.ProjectName}, ProjectDescription: {project.PlanningData.BrainstormData.ProjectDescription}, Features Count: {project.PlanningData.BrainstormData.Features.Count}");
 
             string projectJson = JsonConvert.SerializeObject(project, Formatting.Indented);
             File.WriteAllText(Path.Combine(projectFolder, ".metadata.ppp"), projectJson);
+
+            Debug.WriteLine($"Project saved to {Path.Combine(projectFolder, ".metadata.ppp")}");
+
+            Debug.WriteLine("Exiting SaveProject");
         }
     }
 }

@@ -16,6 +16,7 @@ using Tripple_P.Services;
 using Tripple_P.Models;
 using Tripple_P.Views.Planning.Brainstorm;
 using static Tripple_P.Models.Project;
+using System.Diagnostics;
 
 namespace Tripple_P.Views.Planning
 {
@@ -29,11 +30,11 @@ namespace Tripple_P.Views.Planning
             InitializeComponent();
         }
 
-        public void ResetData()
+        public void ResetData(Project project)
         {
             if (this.FindName("brainstormControl") is BrainstormView brainstormView)
             {
-                brainstormView.ResetData();
+                brainstormView.ResetData(project);
             }
 
             // TODO: Reset data for other child controls...
@@ -41,15 +42,20 @@ namespace Tripple_P.Views.Planning
 
         public PlanningTab CollectPlanningData()
         {
+            Debug.WriteLine("Entering CollectPlanningData");
             PlanningTab planningData = new PlanningTab();
+
+            Debug.WriteLine($"Bfter Getting Data CollectPlanningData - ProjectDescription: {planningData.BrainstormData.ProjectDescription}, Features Count: {planningData.BrainstormData.Features.Count}");
 
             if (this.FindName("brainstormControl") is BrainstormView brainstormView)
             {
+                Debug.WriteLine("Found brainstormControl. Getting data.");
                 planningData.BrainstormData = brainstormView.GetData();
             }
+            Debug.WriteLine($"After Getting Data - ProjectDescription: {planningData.BrainstormData.ProjectDescription}, Features Count: {planningData.BrainstormData.Features.Count}");
 
             // TODO: Collect data from other child controls
-
+            Debug.WriteLine("Exiting CollectPlanningData");
             return planningData;
         }
 
