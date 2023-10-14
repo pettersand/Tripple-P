@@ -35,15 +35,6 @@ namespace Tripple_P
             InitializeComponent();
         }
 
-        private void ResetUI()
-        {
-            if (this.FindName("planningControl") is PlanningView planningView)
-            {
-                planningView.ResetData();
-            }
-
-            // TODO: Reset data for other main tabs...
-        }
 
         private void NewProject_Click(object sender, RoutedEventArgs e)
         {
@@ -65,8 +56,6 @@ namespace Tripple_P
                 {
                     planningView.ResetData(currentProject);
                 }
-
-                ResetUI();
             }
         }
 
