@@ -8,8 +8,9 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:roadmap="clr-namespace:Tripple_P.Views.Planning.Roadmap"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:todo="clr-namespace:Tripple_P.Views.Planning.ToDo"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
     <Grid>
         <TabControl
@@ -23,7 +24,9 @@
                 <brainstorm:BrainstormView x:Name="brainstormControl" />
             </TabItem>
 
-            <TabItem Header="To Do" />
+            <TabItem BorderBrush="{DynamicResource MaterialDesignShadowBrush}" Header="To Do">
+                <todo:ToDoView x:Name="toDoControl" />
+            </TabItem>
 
             <TabItem Header="Roadmap">
                 <roadmap:Roadmap />

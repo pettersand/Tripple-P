@@ -92,9 +92,9 @@ namespace Tripple_P
                 currentProject = new Project();
             }
 
-            // No need to collect data again, just save the currentProject object
             ProjectManager.SaveProject(currentProject, currentProjectFolder);
             MessageBox.Show("Project saved successfully!");
         }
+
     }
 }
